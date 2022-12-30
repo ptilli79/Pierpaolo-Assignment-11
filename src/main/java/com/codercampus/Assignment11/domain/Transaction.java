@@ -14,8 +14,6 @@ public class Transaction implements Serializable, Comparable<Transaction> {
 	private BigDecimal amount;
 	private String type;
 	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +55,7 @@ public class Transaction implements Serializable, Comparable<Transaction> {
 		return "Transaction [id=" + id + ", retailer=" + retailer + ", description=" + description + ", date=" + date
 				+ ", amount=" + amount + ", type=" + type + "]";
 	}
+	
 	@Override
 	public int compareTo(Transaction o) {
 		// TODO Auto-generated method stub
