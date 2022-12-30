@@ -1,0 +1,34 @@
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Online Bank</title>
+		<link rel="stylesheet" href="/css/transactions.css"/>
+	</head>
+	<body>
+		<h2>Transaction History</h2>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Date</th>
+				<th>Retailer</th>
+				<th>Funds In</th>
+				<th>Funds Out</th>
+			</tr>
+			<tr th:each="storedTransaction : ${transactions}">
+				<td><a th:href="@{/transactions/{storedTransactionId}(storedTransactionId=${storedTransaction.id})}" th:text="${storedTransaction.id}"></a></td>
+				<td th:text="${storedTransaction.date}">
+				<!--  <span th:inline="text"> [[${storedTransaction.date}]]</span> -->
+				</td>
+				<td th:text="${storedTransaction.retailer}"></td>
+				<!-- switch expression for conditional output -->				
+				<td th:switch="${storedTransaction.type}">
+            		<span th:case="'C'"> [[${storedTransaction.amount}]]</span>
+            		<span th:case="'D'">-</span>
+        		</td>
+        		<td th:switch="${storedTransaction.type}">
+            		<span th:case="'D'"> [[${storedTransaction.amount}]]</span>
+            		<span th:case="'C'">-</span>
+        		</td>
+			</tr>
+		</table>
+	</body>
+</html>
